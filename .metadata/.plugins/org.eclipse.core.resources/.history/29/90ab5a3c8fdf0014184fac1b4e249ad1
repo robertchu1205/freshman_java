@@ -1,0 +1,21 @@
+package ce1002.a7.s103502548;
+import javax.swing.*;
+
+import java.awt.*;
+import java.util.*;
+
+public class A7 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		JFrame jf = new JFrame("LaMarCus AGG is me!!!");//µøµ¡
+		JTextField [][]jt =new JTextField[9][9];//«ö¶s
+		JPanel panel=new JPanel();//ªO¤l
+		jf.setSize(900, 900);
+		panel.setLayout(new GridLayout(9,9));
+		jf.setVisible(true);//¿é¥X
+		
+	}
+
+}

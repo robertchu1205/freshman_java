@@ -1,0 +1,87 @@
+/*package s103502548;
+
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+
+public class drawpen {
+//	public void mouseMoved(MouseEvent e) {
+//		// System.out.println(e.getX()+"\n");
+//		// System.out.println(e.getY());
+//
+//		px = e.getX();
+//		py = e.getY();
+//	}
+//
+//public void mouseDragged(MouseEvent e) {
+//	Graphics g = getGraphics();
+//		int px2 = e.getX();
+//		int py2 = e.getY();
+//		// System.out.println(e.getX()+"\n");
+//		// System.out.println(e.getY());
+//		g.drawLine(px, py, px2, py2);
+//		px = px2;
+//		py = py2;
+//	}
+}*/
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class drawpen extends JFrame implements MouseMotionListener,
+		ActionListener {
+	public static void main(String[] args) {
+		drawpen frame = new drawpen();
+	}
+
+	int px, py, px2, py2;
+	Graphics2D g2;
+	JColorChooser ch;
+	Color nco;
+	JButton bt = new JButton("選擇顏色");
+
+	// 建構函數
+	public drawpen() {
+		super("簡易小畫家");
+		Container c = getContentPane();
+		// c.setLayout(null);
+		c.setBackground(Color.white);
+		JToolBar tb = new JToolBar();
+		tb.add(bt);
+		c.add(tb, BorderLayout.NORTH);
+		bt.addActionListener(this);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addMouseMotionListener(this);
+		nco = new Color(0, 255, 255);
+		setSize(500, 400); // 設定視窗大小
+		setVisible(true); // 顯示視窗
+	}
+
+	public void actionPerformed(ActionEvent e) {
+
+		nco = ch.showDialog(draw1.this, "選擇顏色", nco);
+	}
+
+	// 移動滑鼠指標
+	public void mouseMoved(MouseEvent e) {
+		// 取得滑鼠座標位置
+		px = e.getX();
+		py = e.getY();
+	}
+
+	// 拖移滑鼠指標
+	public void mouseDragged(MouseEvent e) {
+		px2 = e.getX();
+		py2 = e.getY();
+		Graphics g = getGraphics();
+		g2 = (Graphics2D) g;
+		// 設定線條顏色
+		g2.setColor(nco);
+		// 設定線條寬度
+		// g2.setStroke(new BasicStroke(3.0f));
+		// 畫線條
+		g2.drawLine(px, py, px2, py2);
+		px = px2;
+		py = py2;
+	}
+}

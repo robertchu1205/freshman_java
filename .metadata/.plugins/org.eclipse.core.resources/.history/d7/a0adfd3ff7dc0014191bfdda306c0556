@@ -1,0 +1,40 @@
+package ce1002.a6.s103502548;
+import java.util.*;
+import java.text.*;
+public class A6 {
+	public static String wrong = "Wrong input format! Please use only '/' or '-' symbol to separate numbers."
+			+"\nPlease enter correct date format again, or enter 'Exit' to end the program.";
+	public static void main(String[] args) {
+		String s;
+		Scanner scanner=new Scanner(System.in);
+		A6 a6=new A6();
+		
+		while(true)
+		{
+			System.out.println("===Week day inquire system===");
+			System.out.print("Enter a day (ex: 2015-04-02 or 2015/04/02): ");
+			s=scanner.nextLine();
+			System.out.println("Week day of "+s+" is "+dofw(s));
+			
+		}
+	}
+	public static String dofw(String s) 
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat d = new SimpleDateFormat("EEEEE");
+	//	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+		Date date =sdf.parse(s);
+		String day1 = d.format(date);
+		return day1;
+//		Calendar c=Calendar.getInstance();//取得目前時間
+//		c.setTime(date);
+//		int day=c.get(Calendar.DAY_OF_WEEK);
+//		return day;
+	/*	SimpleDateFormat d=new SimpleDateFormat("u");
+		return d.format(date);*/
+		} catch(ParseException e){
+			return wrong;
+		}
+	}
+}

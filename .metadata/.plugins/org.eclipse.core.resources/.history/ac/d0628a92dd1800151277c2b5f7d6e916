@@ -1,0 +1,285 @@
+package s103502548;
+
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.util.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class FP extends MouseAdapter implements ActionListener {
+	public static JFrame menu = new JFrame("Tactical Board Menu");
+	public static JFrame con = new JFrame("Control by yourself");
+	public static JPanel option = new JPanel();
+	public static JPanel c_option = new JPanel(new GridLayout(3, 1));
+	public static JLabel bal = new JLabel();
+	public static JLabel[] l_blue = new JLabel[5];
+	public static JLabel[] l_red = new JLabel[5];
+	public static JButton own = new JButton("Control by yourself");
+	public static JButton drawred = new JButton("Draw Red");
+	public static JButton reset = new JButton("Reset");
+	public static JButton back = new JButton("Back to menu");
+	public static JButton exit = new JButton("Exit");
+	public static JButton s1 = new JButton("1");
+	public static JButton s2 = new JButton("2");
+	public static JButton s3 = new JButton("A person A team");
+	public static ImageIcon[] coach = new ImageIcon[7];
+	public static ImageIcon court = new ImageIcon("src/s103502548/court.jpg");
+	public static ImageIcon blue = new ImageIcon("src/s103502548/blue1.jpg");
+	public static ImageIcon red = new ImageIcon("src/s103502548/red1.jpg");
+	public static ImageIcon ball = new ImageIcon("src/s103502548/ball.jpg");
+	public static boolean drawornot = false;
+	public static int b1_x = 0;
+	public static int b1_y = 500;
+	public static int px;
+	public static int py;
+	public static int y;
+	public static int x;
+	public static int x0, y0;//球員拖移 暫存按滑鼠的位置
+	Graphics g;
+
+	public static JPanel coach_pic = new JPanel() {// 教練照片直接從PANEL放入
+		protected void paintComponent(Graphics g) {
+			Random ran = new Random();
+			Image bg = coach[ran.nextInt(7)].getImage();
+			g.drawImage(bg, 0, 0, coach[ran.nextInt(7)].getIconWidth(),
+					coach[ran.nextInt(7)].getIconHeight(), this);
+		}
+	};
+	public static JPanel c_court = new JPanel() {// 籃球場直接從PANEL放入
+		protected void paintComponent(Graphics g) {
+			Image c = court.getImage();
+			g.drawImage(c, 0, 0, court.getIconWidth(), court.getIconHeight(),
+					this);
+		}
+	};
+
+	public FP() {
+
+		menu.setLayout(new BorderLayout());
+		menu.setDefaultCloseOperation(menu.EXIT_ON_CLOSE);// 關閉就關閉程式
+		menu.setSize(800, 480);
+		menu.setResizable(false);
+
+		for (int i = 0; i < 7; i++) {
+			coach[i] = new ImageIcon("src/s103502548/" + i + ".jpg");
+		}
+		own.setBounds(25, 400, 140, 35);
+		s1.setBounds(175, 400, 140, 35);
+		s2.setBounds(325, 400, 140, 35);
+		s3.setBounds(475, 400, 140, 35);
+		exit.setBounds(625, 400, 140, 35);
+
+		coach_pic.add(own);
+		coach_pic.add(s1);
+		coach_pic.add(s2);
+		coach_pic.add(s3);
+		coach_pic.add(exit);
+		coach_pic.setLayout(null);
+
+		own.addActionListener(this);
+		s1.addActionListener(this);
+		s2.addActionListener(this);
+		s3.addActionListener(this);
+		exit.addActionListener(this);
+
+		menu.setLocation(400, 100);
+		menu.add(coach_pic);
+		menu.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new FP();
+	}
+
+	public void BacktoMenu() {
+		con.setVisible(false);
+		/*
+		 * s1.setVisible(false); s2.setVisible(false); s3.setVisible(false);
+		 */
+		menu.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == exit) {
+			System.exit(0);
+		}
+		if (e.getSource() == own) {
+			System.out.println("ownown");
+			menu.setVisible(false);
+			con.repaint();
+			con.setLayout(new BorderLayout());
+			con.setDefaultCloseOperation(menu.EXIT_ON_CLOSE);// 關閉就關閉程式
+			con.setResizable(false);
+			con.setLocation(400, 100);
+			con.setSize(650, 520);
+			bal = new JLabel(ball);
+			bal.setBounds(270, 425, ball.getIconWidth(), ball.getIconHeight());
+			c_court.add(bal);
+			for (int i = 0; i < 5; i++) {
+				l_blue[i] = new JLabel(blue);
+				l_red[i] = new JLabel(red);
+				String s = "" + (i + 1);
+				l_blue[i].setText(s);
+				l_red[i].setText(s);
+			}
+			for (int i = 0; i < 5; i++) {// 藍色球員可以拖曳
+				int sss = i;
+				l_blue[i].addMouseListener(new MouseAdapter() {
+					public void mousePressed(MouseEvent e) {
+						x0 = e.getX();
+						y0 = e.getY();
+					}
+				});
+				l_blue[i].addMouseMotionListener(new MouseMotionAdapter() {
+					public void mouseDragged(MouseEvent e) {
+						int v = l_blue[sss].getX() + e.getX() - x0;
+						int b = l_blue[sss].getY() + e.getY() - y0;
+						l_blue[sss].setLocation(v, b);
+						con.repaint();
+					}
+				});
+
+			}
+			for (int i = 0; i < 5; i++) {// 紅色球員可以拖曳
+				int sss = i;
+				l_red[i].addMouseListener(new MouseAdapter() {
+					public void mousePressed(MouseEvent e) {
+						x0 = e.getX();
+						y0 = e.getY();
+					}
+				});
+				l_red[i].addMouseMotionListener(new MouseMotionAdapter() {
+					public void mouseDragged(MouseEvent e) {
+						int v = l_red[sss].getX() + e.getX() - x0;
+						int b = l_red[sss].getY() + e.getY() - y0;
+						l_red[sss].setLocation(v, b);
+						con.repaint();
+					}
+				});
+
+			}
+			bal.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					x0 = e.getX();
+					y0 = e.getY();
+				}
+			});
+			bal.addMouseMotionListener(new MouseMotionAdapter() {
+				public void mouseDragged(MouseEvent e) {
+					int v = bal.getX() + e.getX() - x0;
+					int b = bal.getY() + e.getY() - y0;
+					bal.setLocation(v, b);
+					con.repaint();
+				}
+			});
+			l_blue[0].setBounds(200, 420, 65, 65);
+			l_blue[1].setBounds(170, 420, 65, 65);
+			l_blue[2].setBounds(140, 420, 65, 65);
+			l_blue[3].setBounds(110, 420, 65, 65);
+			l_blue[4].setBounds(80, 420, 65, 65);
+
+			l_red[0].setBounds(200, 380, 65, 65);
+			l_red[1].setBounds(170, 380, 65, 65);
+			l_red[2].setBounds(140, 380, 65, 65);
+			l_red[3].setBounds(110, 380, 65, 65);
+			l_red[4].setBounds(80, 380, 65, 65);
+
+			for (int i = 0; i < 5; i++) {
+				l_blue[i].addMouseMotionListener(this);
+				l_red[i].addMouseMotionListener(this);
+				l_red[i].addMouseListener(this);
+				l_blue[i].addMouseListener(this);
+				c_court.add(l_red[i]);
+				c_court.add(l_blue[i]);
+			}
+
+			c_option.add(drawred);
+			c_option.add(reset);
+			c_option.add(back);
+			c_court.setLayout(null);
+
+			c_court.addMouseListener(this);
+			c_court.addMouseMotionListener(this);
+			reset.addActionListener(this);
+			back.addActionListener(this);
+			drawred.addActionListener(this);
+
+			con.add(c_option, new BorderLayout().EAST);
+			con.add(c_court);
+			con.setVisible(true);
+		}
+		if (e.getSource() == s1) {
+			System.out.println("111111");
+		}
+		if (e.getSource() == s2) {
+			System.out.println("22222");
+		}
+		if (e.getSource() == s3) {
+			System.out.println("A person A team");
+		}
+		if (e.getSource() == back) {
+			BacktoMenu();
+		}
+		if (e.getSource() == reset) {
+			con.repaint();
+			l_blue[0].setBounds(200, 420, 65, 65);
+			l_blue[1].setBounds(170, 420, 65, 65);
+			l_blue[2].setBounds(140, 420, 65, 65);
+			l_blue[3].setBounds(110, 420, 65, 65);
+			l_blue[4].setBounds(80, 420, 65, 65);
+
+			l_red[0].setBounds(200, 380, 65, 65);
+			l_red[1].setBounds(170, 380, 65, 65);
+			l_red[2].setBounds(140, 380, 65, 65);
+			l_red[3].setBounds(110, 380, 65, 65);
+			l_red[4].setBounds(80, 380, 65, 65);
+			bal.setBounds(270, 425, ball.getIconWidth(), ball.getIconHeight());
+		}
+		if (e.getSource() == drawred) {
+			if (drawornot == false) {
+				drawred.setText("Can't Be Drawed");
+				drawornot = true;
+				System.out.println("dddddd");
+				con.addMouseMotionListener(new MouseMotionAdapter(){ 
+					public void mouseMoved(MouseEvent e1) {
+						System.out.println(e1.getX()+"\n");
+						System.out.println(e1.getY());
+						px = e1.getX();
+						py = e1.getY();
+					}
+				}); 
+				
+				con.addMouseMotionListener(new MouseMotionAdapter(){ 
+					public void mouseDragged(MouseEvent e1) {
+						Graphics g = getGraphics();
+						int px2 = e1.getX();
+						int py2 = e1.getY();
+						System.out.println(e1.getX()+"\n");
+						System.out.println(e1.getY());
+						g.drawLine(px, py, px2, py2);
+						px = px2;
+						py = py2;
+				}
+
+					
+				}); 
+			
+			} else {
+				drawornot = false;
+				drawred.setText("Draw Red");
+			}
+		}
+
+	}
+
+	protected Graphics getGraphics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

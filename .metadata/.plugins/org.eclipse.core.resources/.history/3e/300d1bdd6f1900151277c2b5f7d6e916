@@ -1,0 +1,30 @@
+package s103502548;
+
+import java.awt.*;
+import java.awt.event.*;
+ 
+public class drawpen extends Canvas {
+    public static void main(String[] args) {
+        Frame frame = new Frame("AWTDemo");
+        frame.addWindowListener(new AdapterDemo());
+        frame.setSize(200, 220);
+         
+        drawpen canvas = new drawpen();
+        frame.add(canvas, BorderLayout.CENTER);
+         
+        frame.setVisible(true);
+    }
+     
+    public void paint(Graphics g) {
+        g.setColor(Color.BLUE);
+        g.fillRect(20, 20, 100, 100);
+         
+        System.out.println("getColor: " + g.getColor());
+    }    
+}
+ 
+class AdapterDemo extends WindowAdapter {
+    public void windowClosing(WindowEvent e) {
+        System.exit(0);
+    }
+}

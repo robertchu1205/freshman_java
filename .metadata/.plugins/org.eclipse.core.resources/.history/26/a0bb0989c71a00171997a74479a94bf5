@@ -1,0 +1,127 @@
+package ce1002.fp.s103502006;
+
+import ce1002.fp.s103502006.Main.wait;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class start extends Application {
+	static Main m = new Main();
+	static main2 m2 =new main2();
+	Group root = new Group();
+	BorderPane pane = new BorderPane();
+	Button single = new Button("Single Mode");
+	Button battle = new Button("Battle Mode");
+	VBox vbox = new VBox(10);
+
+
+	@Override
+	public void start(Stage primaryStage) {
+		single.setPrefSize(100, 50);
+		battle.setPrefSize(100, 50);
+		vbox.setPadding(new Insets(260, 0, 0, 200));
+		pane.setCenter(vbox);
+		vbox.getChildren().addAll(single, battle);
+		Scene scene = new Scene(pane);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setWidth(500);
+		primaryStage.setHeight(500);
+		primaryStage.show();
+		primaryStage.centerOnScreen();
+		primaryStage.show();
+		single.setOnAction(e -> {
+			Stage clock = new Stage();
+			clock c = new clock();
+			c.start(clock);
+			Stage single = new Stage();
+			 m.setsinglemode(single);
+			m.start(single);
+			primaryStage.close();
+		});
+		battle.setOnAction(e->{
+			primaryStage.close();
+			Stage clock = new Stage();
+			clock c = new clock();
+			c.start(clock);
+			for (int j = 0; j <= 20; j++)
+				for (int i = 0; i <= 14; i++)
+					m.mapblockview[i][j] = new ImageView();
+			m.root.getChildren().add(m.shiftblockgroup);
+			m.root.getChildren().add(m.nextblockgroup);
+			m.root.getChildren().add(m.linesenttext);
+			m.root.getChildren().add(m.combotext);
+			m.root.getChildren().add(m.kotext);
+			m.sortblocksequence();
+			m.setblocksequence();
+			m.sortblocksequence();
+			m.background();
+			m.saveshiftblockview();
+			m.setshiftblockview();
+			m.setnextblockview();
+			for (int i = 1; i <= 12; i++) {
+				m.map[i][20] = 1;
+			}
+
+			for (int i = 0; i <= 19; i++) {
+				m.map[1][i] = 1;
+				m.map[12][i] = 1;
+			}
+			m.showblock(m.blockx, m.blocky, m.rotate);
+			m.setshadow(m.blockx, m.rotate);
+			scene.setFill(Color.GRAY);
+			
+			for (int j = 0; j <= 20; j++)
+				for (int i = 0; i <= 14; i++)
+					m2.mapblockview[i][j] = new ImageView();
+			m2.root.getChildren().add(m2.shiftblockgroup);
+			m2.root.getChildren().add(m2.nextblockgroup);
+			m2.root.getChildren().add(m2.linesenttext);
+			m2.root.getChildren().add(m2.combotext);
+			m2.root.getChildren().add(m2.kotext);
+			m2.sortblocksequence();
+			m2.setblocksequence();
+			m2.sortblocksequence();
+			m2.background();
+			m2.saveshiftblockview();
+			m2.setshiftblockview();
+			m2.setnextblockview();
+			for (int i = 1; i <= 12; i++) {
+				m2.map[i][20] = 1;
+			}
+			for (int i = 0; i <= 19; i++) {
+				m2.map[1][i] = 1;
+				m2.map[12][i] = 1;
+			}
+			m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+			m2.setshadow(m2.blockx, m2.rotate);
+			scene.setFill(Color.GRAY);
+			
+			
+			
+			m.root.getChildren().add(m2.root);
+			Scene battlescene = new Scene(m.root);
+			battlescene.setFill(Color.GRAY);
+			Stage battlestage=new Stage();
+			battlestage.setY(370);
+			battlestage.setY(90);
+			battlestage.setScene(battlescene);
+			battlestage.setResizable(false);
+			battlestage.setWidth(1260);
+			battlestage.setHeight(633);
+			battlestage.show();
+			m.battlemove(battlescene);
+		});
+	}
+	
+	}

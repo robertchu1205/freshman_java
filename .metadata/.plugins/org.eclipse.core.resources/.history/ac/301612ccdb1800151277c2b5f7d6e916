@@ -1,0 +1,25 @@
+package s103502548;
+
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+
+public class drawpen {
+//	public void mouseMoved(MouseEvent e) {
+//		// System.out.println(e.getX()+"\n");
+//		// System.out.println(e.getY());
+//
+//		px = e.getX();
+//		py = e.getY();
+//	}
+//
+//public void mouseDragged(MouseEvent e) {
+//	Graphics g = getGraphics();
+//		int px2 = e.getX();
+//		int py2 = e.getY();
+//		// System.out.println(e.getX()+"\n");
+//		// System.out.println(e.getY());
+//		g.drawLine(px, py, px2, py2);
+//		px = px2;
+//		py = py2;
+//	}
+}

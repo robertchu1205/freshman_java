@@ -1,0 +1,26 @@
+package ce1002.e3.s103502548;
+import java.util.Scanner;
+
+public class E3 {
+
+	public static void main(String[] args) {
+		int lowrange,uprange;
+		System.out.print("Set the range: ");
+		Scanner scanner=new Scanner(System.in);
+		lowrange=scanner.nextInt();
+		uprange=scanner.nextInt();
+		Prime prime=new Prime();
+		prime.setRange(lowrange, uprange);
+		while(prime.check()==false)
+		{
+			System.out.println("Out of range! ");
+			System.out.print("Set the range: ");
+			lowrange=scanner.nextInt();
+			uprange=scanner.nextInt();
+			prime.setRange(lowrange, uprange);
+		}
+		System.out.println("(Ans:"+prime.getRandomPrime()+")\n");
+		// TODO Auto-generated method stub
+	}
+
+}

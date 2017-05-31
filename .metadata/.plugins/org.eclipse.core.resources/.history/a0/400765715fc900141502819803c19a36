@@ -1,0 +1,51 @@
+package ce1002.e3.s103502548;
+import java.util.Random;
+
+public class Prime {
+
+	int low,up,count=0;
+	
+	public void setRange(int lowrange,int uprange) //Set the range  	 
+	{
+		low=lowrange;
+		up=uprange;
+	}
+	
+	public boolean check() //Check if there any prime numbers and print all prime numbers.
+	{	
+		int[] prime;
+		prime = new int[1000];
+		int test=0;
+		if(low==1)
+		{ low=2; }
+		for(int i=low;i<=up;i++)
+		{
+			test=0;
+			for(int j=2;j<i;j++)
+			{
+				if(i%j==0)
+				{
+					test=i;
+					break;
+				}
+			}
+			if(test==0) 
+			{
+				System.out.print(i+" ");
+				prime[count]=i;
+				count++;
+			}
+		}
+		if(prime[0]!=0) { return true; }
+		else { return false; }
+	}
+	public int getRandomPrime() //Get the random prime number.
+	{
+		int num;
+		num=up-low+1;
+		Random random = new Random();
+		return prime[random.nextInt(num)];
+	}
+	
+	
+}

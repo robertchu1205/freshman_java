@@ -1,0 +1,13 @@
+package ce1002.fp.s103502006;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)
+@SuiteClasses({
+		main2Test.class, MainTest.class
+})
+public class AllTests {
+
+}

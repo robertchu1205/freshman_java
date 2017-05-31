@@ -1,0 +1,1372 @@
+package ce1002.fp.s103502006;
+
+import java.util.Random;
+
+import ce1002.fp.s103502006.main2.wait;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
+public class Main extends Application {
+	static boolean comboplus = false;
+	static int templinesent = 0;
+	static int height = 0;
+	static main2 m2 = new main2();
+	static int allblocks[][][][] = {
+			{
+					{
+							{
+									0, 2, 0, 0
+							}, {
+									2, 2, 2, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 0, 0
+							}, {
+									2, 2, 2, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}
+			}, {
+					{
+							{
+									0, 0, 0, 0
+							}, {
+									2, 2, 2, 2
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 2, 0
+							}, {
+									0, 0, 2, 0
+							}, {
+									0, 0, 2, 0
+							}, {
+									0, 0, 2, 0
+							}
+					}, {
+							{
+									0, 0, 0, 0
+							}, {
+									2, 2, 2, 2
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}
+					}
+			}, {
+					{
+							{
+									2, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									2, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									2, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									2, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}
+			}, {
+					{
+							{
+									0, 2, 2, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									0, 0, 2, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 0, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									2, 0, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}
+			}, {
+					{
+							{
+									2, 2, 0, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 2, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									2, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}
+			}, {
+					{
+							{
+									0, 0, 2, 0
+							}, {
+									2, 2, 2, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 2, 2, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 0, 0
+							}, {
+									2, 2, 2, 0
+							}, {
+									2, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									2, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}
+			}, {
+					{
+							{
+									2, 0, 0, 0
+							}, {
+									2, 2, 2, 0
+							}, {
+									0, 0, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 2, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 0, 0, 0
+							}, {
+									2, 2, 2, 0
+							}, {
+									0, 0, 2, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}, {
+							{
+									0, 2, 0, 0
+							}, {
+									0, 2, 0, 0
+							}, {
+									2, 2, 0, 0
+							}, {
+									0, 0, 0, 0
+							}
+					}
+			}
+
+	};
+
+	static Random random = new Random();
+
+	static Group root = new Group();
+	static Group shiftblockgroup = new Group();
+	static Group nextblockgroup = new Group();
+
+	static ImageView[] blockview = new ImageView[4];
+	static ImageView[][] mapblockview = new ImageView[15][21];
+	static ImageView[] shadowblockview = new ImageView[6];
+	static ImageView[][] shiftblockview = new ImageView[7][4];
+	static ImageView[][] nextblockview = new ImageView[7][4];
+	static Image[] blockimage = {
+			new Image("file:src/ce1002/fp/s103502006/T.png"),
+			new Image("file:src/ce1002/fp/s103502006/I.png"),
+			new Image("file:src/ce1002/fp/s103502006/O.png"),
+			new Image("file:src/ce1002/fp/s103502006/S.png"),
+			new Image("file:src/ce1002/fp/s103502006/Z.png"),
+			new Image("file:src/ce1002/fp/s103502006/L.png"),
+			new Image("file:src/ce1002/fp/s103502006/J.png"),
+			new Image("file:src/ce1002/fp/s103502006/shadow.png"),
+			new Image("file:src/ce1002/fp/s103502006/bombblock.png"),
+			new Image("file:src/ce1002/fp/s103502006/bomb.png")
+	};
+
+	static int[][] map = new int[16][25];
+	static int clearlinecount = 0;
+	static int[] sequence = {
+			0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6
+	};
+	static int blocksequencecounter = 0;
+	static int block = 30, blockx = 4, blocky = -1, rotate = 0;
+	static int saveblock = -1;
+	static int shadowy = 0;
+	static int linesent = 0;
+	static int combo = -1;
+	static int ko = 0;
+	static int player2stageset = 630;
+
+	static boolean shiftable = true;
+	static boolean backtoback = false;
+	static checkiftouch check = new checkiftouch();
+
+	static Text linesenttext = new Text(100, 320, "0");
+	static Text combotext = new Text(100, 450, "0");
+	static Text kotext = new Text(100, 565, "0");
+	static Text KO = new Text();
+
+	static int tempreceiveline1 = 0, tempreceiveline2 = 0;
+
+	@Override
+	public void start(Stage primaryStage) {
+		for (int j = 0; j <= 20; j++)
+			for (int i = 0; i <= 14; i++)
+				mapblockview[i][j] = new ImageView();
+		root.getChildren().add(shiftblockgroup);
+		root.getChildren().add(nextblockgroup);
+		root.getChildren().add(linesenttext);
+		root.getChildren().add(combotext);
+		root.getChildren().add(kotext);
+		sortblocksequence();
+		setblocksequence();
+		sortblocksequence();
+		background();
+		saveshiftblockview();
+		setshiftblockview();
+		setnextblockview();
+		for (int i = 1; i <= 12; i++) {
+			map[i][20] = 1;
+		}
+
+		for (int i = 0; i <= 19; i++) {
+			map[1][i] = 1;
+			map[12][i] = 1;
+		}
+		showblock(blockx, blocky, rotate);
+		setshadow(blockx, rotate);
+		Scene scene = new Scene(root);
+		scene.setFill(Color.GRAY);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		// primaryStage.setWidth(630);
+		primaryStage.setHeight(633);
+		// setlocation(primaryStage);
+		primaryStage.show();
+		singlemove(scene);
+	}
+
+	void setsinglemode(Stage stage) {
+		stage.setX(370);
+		stage.setY(90);
+		stage.setWidth(630);
+	}
+
+	static void checkko() {
+		if (blockx == 4 && blocky == -1) {
+			int j = 0;
+			for (int i = 5; i <= 8; i++) {
+				if (map[i][j] == 1) {
+					KO.setVisible(true);
+					ko++;
+					m2.kotext.setText("" + ko);
+					if (ko == 5) {
+						m2.kotext.setFill(Color.RED);
+					}
+					for (int b = 0; b <= 19; b++)
+						for (int a = 2; a <= 11; a++) {
+							map[a][b] = 0;
+							root.getChildren().remove(mapblockview[a][b]);
+							mapblockview[a][b] = new ImageView();
+							root.getChildren().add(mapblockview[a][b]);
+						}
+				}
+			}
+		}
+	}
+
+	static void showblock(int x, int y, int r) {
+		clearmovingblock();
+		r = (r % 4);
+		// Stage dead = new Stage();
+		// Label label = new Label("Your Line Sent is "+linesent);
+		// dead.setTitle("dead");
+		// Scene scene2 = new Scene(label);
+		// dead.setX(500);
+		// dead.setY(500);
+		// dead.setWidth(200);
+		// dead.setHeight(100);
+		// dead.setScene(scene2);
+		// dead.show();
+		for (int i = 0; i <= 3; i++)
+			for (int j = 0; j <= 3; j++) {
+				try {
+
+					if (map[1 + i + x][j + y] == 1
+							|| map[1 + i + x][j + y] == 3) {
+					} else
+						map[1 + i + x][j + y] = allblocks[sequence[blocksequencecounter]][r][j][i];
+				} catch (Exception e) {
+
+				}
+			}
+		int c = -1;
+		for (int j = 0; j <= 20; j++) {
+			for (int i = 0; i <= 12; i++) {
+				if (map[i][j] == 2) {
+					c++;
+					blockview[c] = new ImageView(
+							blockimage[sequence[blocksequencecounter]]);
+					blockview[c].setX(100 + i * block);
+					blockview[c].setY(j * block);
+					root.getChildren().add(blockview[c]);
+				}
+				// System.out.print(map[i][j]);
+			}
+			// System.out.println("");
+		}
+		// System.out.println("");
+	}
+
+	static void sortblocksequence() {
+		for (int i = 0; i < 100; i++) {
+			int index = random.nextInt(7);
+			int temp = sequence[7];
+			sequence[7] = sequence[index + 7];
+			sequence[index + 7] = temp;
+		}
+	}
+
+	static void setblocksequence() {
+		for (int i = 0; i <= 6; i++) {
+			sequence[i] = sequence[i + 7];
+		}
+	}
+
+	public static class wait implements Runnable {
+		public void run() {
+
+		}
+
+	}
+
+	static void saveshiftblockview() {
+		for (int k = 0; k <= 6; k++) {
+			int c = -1;
+			for (int j = 0; j <= 3; j++)
+				for (int i = 0; i <= 3; i++)
+					if (allblocks[k][0][j][i] == 2) {
+						c++;
+						shiftblockview[k][c] = new ImageView(blockimage[k]);
+					}
+		}
+	}
+
+	static void setshiftblockview() {
+		for (int k = 0; k <= 6; k++) {
+			int c = -1;
+			for (int j = 0; j <= 3; j++)
+				for (int i = 0; i <= 3; i++)
+					if (allblocks[k][0][j][i] == 2) {
+						c++;
+						shiftblockview[k][c].setX(i * block + 30);
+						shiftblockview[k][c].setY(j * block + 70);
+
+					}
+		}
+	}
+
+	static void showshiftblockview() {
+		shiftblockgroup.getChildren().clear();
+		shiftblockgroup.getChildren().addAll(
+				shiftblockview[sequence[blocksequencecounter]][0],
+				shiftblockview[sequence[blocksequencecounter]][1],
+				shiftblockview[sequence[blocksequencecounter]][2],
+				shiftblockview[sequence[blocksequencecounter]][3]);
+
+	}
+
+	static void checkbomb() {
+		for (int j = 0; j <= 19; j++) {
+			for (int i = 2; i <= 11; i++)
+				if (map[i][j] == 2) {
+					for (int k = 1;; k++) {
+						if (map[i][j + k] == 3) {
+							map[i][j + k] = 1;
+						} else
+							break;
+					}
+				}
+
+		}
+	}
+
+	static void setnextblockview() {
+		for (int k = 0; k <= 2; k++) {
+			int c = -1;
+			for (int j = 0; j <= 3; j++)
+				for (int i = 0; i <= 3; i++)
+					if (allblocks[sequence[blocksequencecounter + 1 + k]][0][j][i] == 2) {
+						c++;
+						nextblockview[k][c] = new ImageView(
+								blockimage[sequence[blocksequencecounter + 1
+										+ k]]);
+						if (sequence[(blocksequencecounter + 1 + k) % 7] == 2)
+							nextblockview[k][c].setX(i * block + 500);
+						else
+							nextblockview[k][c].setX(i * block + 490);
+						if (sequence[(blocksequencecounter + 1 + k) % 7] == 1)
+							nextblockview[k][c].setY(j * block + 85 + k
+									* (block + 65));
+						else
+							nextblockview[k][c].setY(j * block + 70 + k
+									* (block + 65));
+					}
+			nextblockgroup.getChildren().clear();
+		}
+		for (int i = 0; i <= 2; i++)
+			for (int j = 0; j <= 3; j++)
+				nextblockgroup.getChildren().add(nextblockview[i][j]);
+	}
+
+	static void setshadow(int x, int r) {
+		root.getChildren().removeAll(shadowblockview[0], shadowblockview[1],
+				shadowblockview[2], shadowblockview[3]);
+		shadowy = 0;
+		while (true) {
+			if (check.down(map) == true) {
+				shadowy++;
+				showblock(blockx, shadowy, rotate);
+			} else {
+				int c = -1;
+				for (int j = 0; j <= 20; j++)
+					for (int i = 0; i <= 11; i++) {
+						if (map[i][j] == 2) {
+							c++;
+							shadowblockview[c] = new ImageView(blockimage[7]);
+							shadowblockview[c].setX(100 + i * block);
+							shadowblockview[c].setY(j * block);
+							root.getChildren().add(shadowblockview[c]);
+							root.getChildren().removeAll(blockview[0],
+									blockview[1], blockview[2], blockview[3]);
+							map[i][j] = 0;
+						}
+					}
+				break;
+			}
+		}
+		showblock(blockx, blocky, rotate);
+	}
+
+	static void singlemove(Scene scene) {
+		scene.setOnKeyPressed(e -> {
+			switch (e.getCode()) {
+			case SPACE: {
+				while (true) {
+					if (check.down(map) == true) {
+						blocky++;
+						showblock(blockx, blocky, rotate);
+					} else {
+						addbomb();
+						firmblock();
+						clearlinecount = 0;
+						clearline();
+						comboplus();
+						linesentcauculate();
+						resetcombo();
+						linesentcombotextset();
+						shiftable = true;
+						blockx = 4;
+						blocky = -1;
+						rotate = 0;
+						blocksequencecounter++;
+						if (blocksequencecounter == 7) {
+							blocksequencecounter = 0;
+							setblocksequence();
+							sortblocksequence();
+						}
+						setnextblockview();
+						break;
+					}
+				}
+				checkko();
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+			}
+				break;
+			case DOWN: {
+				if (check.down(map) == true) {
+					blocky++;
+					setshadow(blockx, rotate);
+				} else {
+					Thread wait = new Thread(new wait());
+					addbomb();
+					firmblock();
+					clearlinecount = 0;
+					clearline();
+					comboplus();
+					linesentcauculate();
+					resetcombo();
+					linesentcombotextset();
+					shiftable = true;
+					blockx = 4;
+					blocky = -1;
+					rotate = 0;
+					blocksequencecounter++;
+					if (blocksequencecounter == 7) {
+						blocksequencecounter = 0;
+						setblocksequence();
+						sortblocksequence();
+					}
+					setnextblockview();
+				}
+				checkko();
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+			}
+				break;
+			case RIGHT: {
+				if (check.right(map) == true) {
+					blockx++;
+					showblock(blockx, blocky, rotate);
+					setshadow(blockx, rotate);
+				}
+			}
+				break;
+			case LEFT: {
+				if (check.left(map) == true) {
+					blockx--;
+					showblock(blockx, blocky, rotate);
+					setshadow(blockx, rotate);
+				}
+			}
+				break;
+			case UP: {
+				int judgeclockwiseorunclockwise = 1;
+				rotate++;
+				// check.clockwiserotate(judgeclockwiseorunclockwise);
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+			}
+				break;
+			case CONTROL: {
+				int judgeclockwiseorunclockwise = -1;
+				rotate--;
+				if (rotate == -1)
+					rotate = 3;
+				// check.clockwiserotate(judgeclockwiseorunclockwise);
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+			}
+				break;
+			case SHIFT: {
+				if (shiftable == true) {
+					showshiftblockview();
+					if (saveblock == -1) {
+						saveblock = sequence[blocksequencecounter];
+						blocksequencecounter = (blocksequencecounter + 1) % 7;
+					} else {
+						int temp;
+						temp = sequence[blocksequencecounter];
+						sequence[blocksequencecounter] = saveblock;
+						saveblock = temp;
+					}
+					setnextblockview();
+					showblock(blockx, blocky, rotate);
+					setshadow(blockx, rotate);
+					shiftable = false;
+				}
+
+			}
+				break;
+			}
+		});
+	}
+
+	void showmap() {
+		for (int j = 0; j <= 19; j++) {
+
+			for (int i = 2; i <= 11; i++) {
+				System.out.print(map[i][j]);
+			}
+			System.out.println("");
+		}
+		System.out.println("");
+		System.out.println("");
+	}
+
+	static void comboplus() {
+		if (comboplus == true)
+			combo++;
+	}
+
+	static void battlemove(Scene scene) {
+		scene.setOnKeyPressed(e -> {
+			switch (e.getCode()) {
+			case SPACE: {
+				KO.setVisible(false);
+				while (true) {
+					if (check.down(map) == true) {
+						blocky++;
+						showblock(blockx, blocky, rotate);
+					} else {
+						checkbomb();
+						addbomb();
+						clearlinecount = 0;
+						clearline();
+						if (clearlinecount > 0)
+							comboplus = true;
+						// linesentcauculate();
+						firmblock();
+						checkko();
+						clearline();
+						if (clearlinecount > 0)
+							comboplus = true;
+						comboplus();
+						comboplus = false;
+						linesentcauculate();
+						resetcombo();
+						linesentcombotextset();
+						// for(int j=0;j<=19;j++){
+						// for(int i=2;i<=11;i++)
+						// {
+						// System.out.print(map[i][j]);
+						// }
+						// System.out.println();
+						// }
+						// System.out.println();
+						shiftable = true;
+						blockx = 4;
+						blocky = -1;
+						rotate = 0;
+						blocksequencecounter++;
+						if (blocksequencecounter == 7) {
+							blocksequencecounter = 0;
+							setblocksequence();
+							sortblocksequence();
+						}
+						setnextblockview();
+						break;
+					}
+				}
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case G: {
+				KO.setVisible(false);
+				if (check.down(map) == true) {
+					blocky++;
+					// setshadow(blockx, rotate);
+				} else {
+					// Thread wait = new Thread(new wait());
+					checkbomb();
+					addbomb();
+					clearlinecount = 0;
+					clearline();
+					if (clearlinecount > 0)
+						comboplus = true;
+					// linesentcauculate();
+					firmblock();
+					checkko();
+					clearline();
+					if (clearlinecount > 0)
+						comboplus = true;
+					comboplus();
+					comboplus = false;
+					linesentcauculate();
+					resetcombo();
+					linesentcombotextset();
+					shiftable = true;
+					blockx = 4;
+					blocky = -1;
+					rotate = 0;
+					blocksequencecounter++;
+					if (blocksequencecounter == 7) {
+						blocksequencecounter = 0;
+						setblocksequence();
+						sortblocksequence();
+					}
+					setnextblockview();
+				}
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case H: {
+				KO.setVisible(false);
+				if (check.right(map) == true) {
+					blockx++;
+					showblock(blockx, blocky, rotate);
+					setshadow(blockx, rotate);
+					KO.setVisible(false);
+				}
+			}
+				break;
+			case F: {
+				KO.setVisible(false);
+				if (check.left(map) == true) {
+					blockx--;
+					showblock(blockx, blocky, rotate);
+					setshadow(blockx, rotate);
+					KO.setVisible(false);
+				}
+			}
+				break;
+			case T: {
+				KO.setVisible(false);
+				int judgeclockwiseorunclockwise = 1;
+				rotate++;
+				// check.clockwiserotate(judgeclockwiseorunclockwise);
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case CONTROL: {
+				KO.setVisible(false);
+				int judgeclockwiseorunclockwise = -1;
+				rotate--;
+				if (rotate == -1)
+					rotate = 3;
+				// check.clockwiserotate(judgeclockwiseorunclockwise);
+				showblock(blockx, blocky, rotate);
+				setshadow(blockx, rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case SHIFT: {
+				KO.setVisible(false);
+				if (shiftable == true) {
+					showshiftblockview();
+					if (saveblock == -1) {
+						saveblock = sequence[blocksequencecounter];
+						blocksequencecounter = (blocksequencecounter + 1) % 7;
+					} else {
+						int temp;
+						temp = sequence[blocksequencecounter];
+						sequence[blocksequencecounter] = saveblock;
+						saveblock = temp;
+					}
+					setnextblockview();
+					showblock(blockx, blocky, rotate);
+					setshadow(blockx, rotate);
+					KO.setVisible(false);
+					shiftable = false;
+				}
+
+			}
+				break;
+
+			case DOWN: {
+				KO.setVisible(false);
+				while (true) {
+					if (check.down(m2.map) == true) {
+						m2.blocky++;
+						m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+					} else {
+						m2.checkbomb();
+						m2.addbomb();
+						m2.clearlinecount = 0;
+						m2.clearline();
+						if (m2.clearlinecount > 0)
+							m2.comboplus = true;
+						// linesentcauculate();
+						m2.firmblock();
+						m2.checkko();
+						m2.clearline();
+						if (m2.clearlinecount > 0)
+							m2.comboplus = true;
+						m2.comboplus();
+						m2.comboplus = false;
+						m2.linesentcauculate();
+						m2.resetcombo();
+						m2.linesentcombotextset();
+						m2.shiftable = true;
+						m2.blockx = 4;
+						m2.blocky = -1;
+						m2.rotate = 0;
+						m2.blocksequencecounter++;
+						if (m2.blocksequencecounter == 7) {
+							m2.blocksequencecounter = 0;
+							m2.setblocksequence();
+							m2.sortblocksequence();
+						}
+						m2.setnextblockview();
+						break;
+					}
+				}
+				m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+				m2.setshadow(m2.blockx, m2.rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case NUMPAD5: {
+				KO.setVisible(false);
+				if (check.down(m2.map) == true) {
+					m2.blocky++;
+					// m2.setshadow(m2.blockx, m2.rotate);
+				} else {
+					// Thread wait = new Thread(new wait());
+					m2.checkbomb();
+					m2.addbomb();
+					m2.clearlinecount = 0;
+					m2.clearline();
+					if (m2.clearlinecount > 0)
+						m2.comboplus = true;
+					// linesentcauculate();
+					m2.firmblock();
+					m2.checkko();
+					m2.clearline();
+					if (m2.clearlinecount > 0)
+						m2.comboplus = true;
+					m2.comboplus();
+					m2.comboplus = false;
+					m2.linesentcauculate();
+					m2.resetcombo();
+					m2.linesentcombotextset();
+					m2.shiftable = true;
+					m2.blockx = 4;
+					m2.blocky = -1;
+					m2.rotate = 0;
+					m2.blocksequencecounter++;
+					if (m2.blocksequencecounter == 7) {
+						m2.blocksequencecounter = 0;
+						m2.setblocksequence();
+						m2.sortblocksequence();
+					}
+					m2.setnextblockview();
+				}
+				m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+				m2.setshadow(m2.blockx, m2.rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case NUMPAD6: {
+				KO.setVisible(false);
+				if (check.right(m2.map) == true) {
+					m2.blockx++;
+					m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+					m2.setshadow(m2.blockx, m2.rotate);
+					KO.setVisible(false);
+				}
+			}
+				break;
+			case NUMPAD4: {
+				KO.setVisible(false);
+				if (check.left(m2.map) == true) {
+					m2.blockx--;
+					m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+					m2.setshadow(m2.blockx, m2.rotate);
+					KO.setVisible(false);
+				}
+			}
+				break;
+			case NUMPAD8: {
+				KO.setVisible(false);
+				int judgeclockwiseorunclockwise = 1;
+				m2.rotate++;
+				// check.clockwisem2.rotate(judgeclockwiseorunclockwise);
+				m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+				m2.setshadow(m2.blockx, m2.rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case K: {
+				KO.setVisible(false);
+				int judgeclockwiseorunclockwise = -1;
+				m2.rotate--;
+				if (m2.rotate == -1)
+					m2.rotate = 3;
+				// check.clockwisem2.rotate(judgeclockwiseorunclockwise);
+				m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+				m2.setshadow(m2.blockx, m2.rotate);
+				KO.setVisible(false);
+			}
+				break;
+			case O: {
+				KO.setVisible(false);
+				if (m2.shiftable == true) {
+					m2.showshiftblockview();
+					if (m2.saveblock == -1) {
+						m2.saveblock = m2.sequence[m2.blocksequencecounter];
+						m2.blocksequencecounter = (m2.blocksequencecounter + 1) % 7;
+					} else {
+						int temp;
+						temp = m2.sequence[m2.blocksequencecounter];
+						m2.sequence[m2.blocksequencecounter] = m2.saveblock;
+						m2.saveblock = temp;
+					}
+					m2.setnextblockview();
+					m2.showblock(m2.blockx, m2.blocky, m2.rotate);
+					m2.setshadow(m2.blockx, m2.rotate);
+					KO.setVisible(false);
+					m2.shiftable = false;
+				}
+
+			}
+				break;
+			}
+		});
+	}
+
+	static void clearmovingblock() {
+		for (int j = 0; j <= 20; j++)
+			for (int i = 0; i <= 11; i++) {
+				if (map[i][j] == 2) {
+					root.getChildren().removeAll(blockview[0], blockview[1],
+							blockview[2], blockview[3]);
+				}
+			}
+		for (int j = 0; j <= 20; j++)
+			for (int i = 0; i <= 11; i++) {
+				if (map[i][j] == 2)
+					map[i][j] = 0;
+			}
+	}
+
+	static void firmblock() {
+		for (int j = 0; j <= 20; j++)
+			for (int i = 0; i <= 11; i++) {
+				if (map[i][j] == 2) {
+					mapblockview[i][j] = new ImageView(
+							blockimage[sequence[blocksequencecounter]]);
+					mapblockview[i][j].setX(100 + i * block);
+					mapblockview[i][j].setY(j * block);
+					root.getChildren().add(mapblockview[i][j]);
+					root.getChildren().removeAll(blockview[0], blockview[1],
+							blockview[2], blockview[3]);
+					map[i][j] = 1;
+				}
+			}
+	}
+
+	static void linesentcauculate() {
+		if (clearlinecount > 0) {
+			if (combo >= 7)
+				linesent += 4;
+			if (combo >= 1 && combo <= 6)
+				linesent += ((combo + 1) / 2);
+			if (backtoback == true && clearlinecount == 4) {
+				linesent += 4 * 1.5;
+			}
+			if (backtoback == false && clearlinecount == 4) {
+				linesent += 4;
+				backtoback = true;
+			}
+			if (clearlinecount < 4) {
+				linesent += (clearlinecount - 1);
+				backtoback = false;
+			}
+			System.out.println("linesent :" + linesent);
+		}
+	}
+
+	static void resetcombo() {
+		if (clearlinecount <= 0) {
+			combo = -1;
+		}
+	}
+
+	static void linesentcombotextset() {
+		linesenttext.setText("" + linesent);
+		if (combo >= 0)
+			combotext.setText("" + combo);
+		if (linesent >= 10 && linesent < 100)
+			linesenttext.setX(70);
+		else if (linesent >= 100)
+			linesenttext.setX(50);
+		if (combo >= 10) {
+			combotext.setX(70);
+			combotext.setFill(Color.RED);
+		}
+	}
+
+	static void clearline() {
+		for (int j = 0; j <= 19; j++) {
+			int check = 0;
+			for (int i = 2; i <= 11; i++) {
+				if (map[i][j] == 1)
+					check++;
+			}
+			if (check == 10) {
+				clearlinecount++;
+				for (int k = 2; k <= 11; k++) {
+					root.getChildren().remove(mapblockview[k][j]);
+					mapblockview[k][j] = new ImageView();
+					root.getChildren().add(mapblockview[k][j]);
+					map[k][j] = 0;
+				}
+				int temp[][] = new int[16][25];
+				ImageView ivtemp[][] = new ImageView[16][25];
+				for (int b = 0; b <= 24; b++)
+					for (int a = 0; a <= 15; a++)
+						ivtemp[a][b] = new ImageView();
+
+				for (int b = 0; b <= j; b++)
+					for (int a = 2; a <= 11; a++) {
+						temp[a][b + 1] = map[a][b];
+						root.getChildren().remove(mapblockview[a][b]);
+						ivtemp[a][b + 1] = mapblockview[a][b];
+					}
+				for (int b = 0; b <= j; b++)
+					for (int a = 2; a <= 11; a++) {
+						map[a][b] = temp[a][b];
+						root.getChildren().remove(mapblockview[a][b]);
+						mapblockview[a][b] = ivtemp[a][b];
+						mapblockview[a][b].setX(100 + a * block);
+						mapblockview[a][b].setY(b * block);
+						root.getChildren().add(mapblockview[a][b]);
+					}
+			}
+		}
+
+	}
+
+	static void addbomb() {
+		int receiveline = 0;
+		int thebomb;
+		if (templinesent != m2.linesent) {
+			templinesent = m2.linesent;
+			tempreceiveline1 = tempreceiveline2;
+			if (m2.linesent - linesent > 0)
+				tempreceiveline2 = m2.linesent - linesent;
+			else
+				tempreceiveline2 = 0;
+			receiveline = tempreceiveline2 - tempreceiveline1;
+			System.out.println("receiveline=" + receiveline);
+		}
+		// for (int b = 19; b >= 0; b--)
+		// for (int a = 2; a <= 11; a++) {
+		// if (map[a][b] == 2) {
+		// height = 20 - b;
+		// }
+		// ;
+		//
+		// }
+		// System.out.println("height=" + height);
+		// for (int j = 0; j <= 19; j++) {
+		// for (int i = 2; i <= 11; i++) {
+		// System.out.print(map[i][j]);
+		// }
+		// System.out.println();
+		// }
+		if (height + receiveline > 19) {
+			ko++;
+			KO.setVisible(true);
+			m2.kotext.setText("" + ko);
+			for (int b = 0; b <= 19; b++)
+				for (int a = 2; a <= 11; a++) {
+					map[a][b] = 0;
+					root.getChildren().remove(mapblockview[a][b]);
+					mapblockview[a][b] = new ImageView();
+					root.getChildren().add(mapblockview[a][b]);
+					
+				}
+			for(int i=0;i<=3;i++)
+			{
+				root.getChildren().remove(blockview[i]);
+				blockview[i] = new ImageView();
+				root.getChildren().add(blockview[i]);
+			}
+			
+		}
+		
+		if (receiveline != 0 && height + receiveline <= 19) {
+			int temp[][] = new int[16][45];
+			ImageView ivtemp[][] = new ImageView[16][45];
+			for (int b = 0; b <= 44; b++)
+				for (int a = 0; a <= 15; a++)
+					ivtemp[a][b] = new ImageView();
+			for (int b = 0; b <= 19; b++)
+				for (int a = 2; a <= 11; a++) {
+					temp[a][b] = map[a][b];
+					root.getChildren().remove(mapblockview[a][b]);
+					ivtemp[a][b] = mapblockview[a][b];
+					mapblockview[a][b] = new ImageView();
+					root.getChildren().add(mapblockview[a][b]);
+				}
+			for (int b = 0; b <= 19; b++)
+				for (int a = 2; a <= 11; a++) {
+					map[a][b] = temp[a][b + receiveline];
+					root.getChildren().remove(mapblockview[a][b]);
+					mapblockview[a][b] = ivtemp[a][b + receiveline];
+					mapblockview[a][b].setX(100 + a * block);
+					mapblockview[a][b].setY(b * block);
+					root.getChildren().add(mapblockview[a][b]);
+				}
+			for (int b = 19; b >= 19 - receiveline + 1; b--) {
+				for (int a = 2; a <= 11; a++) {
+					map[a][b] = 1;
+					root.getChildren().remove(mapblockview[a][b]);
+					mapblockview[a][b] = new ImageView(blockimage[8]);
+
+					mapblockview[a][b].setX(100 + a * block);
+					mapblockview[a][b].setY(b * block);
+					root.getChildren().add(mapblockview[a][b]);
+				}
+				thebomb = random.nextInt(10) + 2;
+				map[thebomb][b] = 3;
+				root.getChildren().remove(mapblockview[thebomb][b]);
+				mapblockview[thebomb][b] = new ImageView(blockimage[9]);
+				mapblockview[thebomb][b].setX(100 + thebomb * block);
+				mapblockview[thebomb][b].setY(b * block);
+				root.getChildren().add(mapblockview[thebomb][b]);
+			}
+			// for (int j = 0; j <= 19; j++) {
+			// for (int i = 2; i <= 11; i++) {
+			// System.out.print(map[i][j]);
+			// }
+			// System.out.println();
+			// }
+			// System.out.println();
+			// System.out.println();
+			// }
+		}
+	}
+
+	static void background() {
+		Text hold = new Text(30, 50, "Hold");
+		Text next = new Text(500, 50, "Next");
+		Text line = new Text(20, 210, "Line");
+		Text sent = new Text(35, 250, "Sent");
+		Text combotitletext = new Text(10, 380, "Combo");
+		Text kotitletext = new Text(10, 495, "KO");
+
+		Line[] row = new Line[21];
+		Line[] column = new Line[11];
+		hold.setFont(Font.font(STYLESHEET_CASPIAN, 40));
+		next.setFont(Font.font(STYLESHEET_CASPIAN, 40));
+		line.setFont(Font.font(STYLESHEET_CASPIAN, 40));
+		sent.setFont(Font.font(STYLESHEET_CASPIAN, 40));
+		combotitletext.setFont(Font.font(STYLESHEET_CASPIAN, 40));
+		kotitletext.setFont(Font.font(STYLESHEET_CASPIAN, 40));
+		linesenttext.setFont(Font.font(STYLESHEET_CASPIAN, 60));
+		linesenttext.setFill(Color.AQUAMARINE);
+		combotext.setFont(Font.font(STYLESHEET_CASPIAN, 60));
+		combotext.setFill(Color.AQUAMARINE);
+		kotext.setFont(Font.font(STYLESHEET_CASPIAN, 60));
+		kotext.setFill(Color.AQUAMARINE);
+		hold.setFill(Color.WHITE);
+		next.setFill(Color.WHITE);
+		line.setFill(Color.WHITE);
+		sent.setFill(Color.WHITE);
+		combotitletext.setFill(Color.WHITE);
+		kotitletext.setFill(Color.WHITE);
+		root.getChildren().addAll(hold, next, line, sent, combotitletext,
+				kotitletext);
+		for (int i = 0; i <= 20; i++) {
+			row[i] = new Line(160, 30 * (i) + 1, 460, 30 * (i) + 1);
+			root.getChildren().add(row[i]);
+		}
+		for (int i = 0; i <= 10; i++) {
+			column[i] = new Line(160 + 30 * i, 0, 160 + 30 * i, 600);
+			root.getChildren().add(column[i]);
+		}
+		Text KO = new Text(225 + player2stageset, 300, "KO");
+		KO.setFill(Color.RED);
+		KO.setFont(Font.font(STYLESHEET_CASPIAN, 120));
+		KO.setVisible(false);
+		root.getChildren().add(KO);
+	}
+
+	
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
+
+// int[][][] T = {
+// { { 0, 1, 0, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 0, 1, 1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 0, 0 }, { 1, 1, 1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } } };
+//
+// int[][][] I = {
+// { { 1, 1, 1, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 1, 0 } },
+// { { 1, 1, 1, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 } } };
+//
+// int[][][] O = {
+// { { 1, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 1, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 1, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 1, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } } };
+// int[][][] S = {
+// { { 0, 1, 1, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 1, 0, 0, 0 }, { 1, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } } };
+// int[][][] Z = {
+// { { 1, 1, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 1, 0 }, { 0, 1, 1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 0, 0 }, { 1, 1, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 1, 1, 0, 0 }, { 1, 0, 0, 0 }, { 0, 0, 0, 0 } } };;
+// int[][][] L = {
+// { { 0, 0, 1, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 0, 0 }, { 1, 1, 1, 0 }, { 1, 0, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 1, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } } };
+// int[][][] J = {
+// { { 1, 0, 0, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, }, { 0, 0, 0, 0 } },
+// { { 0, 1, 1, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 0, 0, 0 }, { 1, 1, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 0 } },
+// { { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 } } };

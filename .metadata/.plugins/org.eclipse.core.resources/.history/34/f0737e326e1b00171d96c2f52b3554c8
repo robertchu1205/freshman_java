@@ -1,0 +1,146 @@
+package ce1002.fp.s103502006;
+
+import static org.junit.Assert.*;
+import javafx.stage.Stage;
+
+import org.junit.Test;
+
+public class MainTest {
+	
+	
+	/*public void testSetsinglemode() {
+		Main m = new Main(); 
+		Stage mstage = new Stage();
+		m.setsinglemode(mstage);
+		assertEquals(370,mstage.getX());
+		assertEquals(90,mstage.getY());
+		assertEquals(630,mstage.getWidth());
+	}
+
+	/*@Test
+	public void testCheckko() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShowblock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSortblocksequence() {
+		
+	}
+
+	@Test
+	public void testSetblocksequence() {
+			}
+
+	@Test
+	public void testSaveshiftblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetshiftblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShowshiftblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCheckbomb() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetnextblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetshadow() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSinglemove() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShowmap() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testComboplus() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testBattlemove() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testClearmovingblock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFirmblock() {
+		fail("Not yet implemented");
+	}
+*/
+	@Test
+	public void testLinesentcauculate() {
+	
+	Main mtest = new Main();
+	mtest.linesent=0;
+	mtest.clearlinecount=2;
+	mtest.backtoback=true;
+	mtest.combo=0;
+	mtest.linesentcauculate();
+	assertEquals(1,mtest.linesent);
+	}
+
+	@Test
+	public void testResetcombo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLinesentcombotextset() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testClearline() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddbomb() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testBackground() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLinesentcount() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testMain() {
+		fail("Not yet implemented");
+	}
+
+}

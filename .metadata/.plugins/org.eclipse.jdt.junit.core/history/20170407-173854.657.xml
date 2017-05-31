@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="FPTest" project="FP-103502548" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="s103502548.FPTest" time="0.324">
+    <testcase name="testFP" classname="s103502548.FPTest" time="0.324"/>
+  </testsuite>
+</testrun>

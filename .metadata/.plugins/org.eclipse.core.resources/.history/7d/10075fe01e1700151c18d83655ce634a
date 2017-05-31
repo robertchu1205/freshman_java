@@ -1,0 +1,202 @@
+package s103502548;
+
+import java.awt.*;
+import javax.swing.*;
+import java.util.*;
+import java.awt.event.*;
+import java.util.Random;
+
+
+public class FP extends MouseAdapter implements ActionListener{
+	public static JFrame menu = new JFrame("Tactical Board Menu");
+	public static JFrame con = new JFrame("Control by yourself");
+	public static JPanel option = new JPanel();
+	public static JPanel c_option = new JPanel(new GridLayout(3, 1));
+	public static JLabel[] l_blue = new JLabel[5];
+	public static JLabel[] l_red = new JLabel[5];
+	public static JButton own = new JButton("Control by yourself");
+	public static JButton drawred = new JButton("Draw Red");
+	public static JButton drawblue = new JButton("Draw Blue");
+	public static JButton back = new JButton("Back to menu");
+	public static JButton exit = new JButton("Exit");
+	public static JButton s1 = new JButton("1");
+	public static JButton s2 = new JButton("2");
+	public static JButton s3 = new JButton("3");
+	public static ImageIcon[] coach = new ImageIcon[7];
+	public static ImageIcon court = new ImageIcon("src/s103502548/court.jpg");
+	public static ImageIcon blue = new ImageIcon("src/s103502548/blue.jpg");
+	public static ImageIcon red = new ImageIcon("src/s103502548/red.jpg");
+	public static boolean dragornot = false;
+	public static int b1_x=0;
+	public static int b1_y=500;
+	public static int y;
+	
+	public static JPanel coach_pic = new JPanel() {// 教練照片直接從PANEL放入
+		protected void paintComponent(Graphics g) {
+			Random ran = new Random();
+			Image bg = coach[ran.nextInt(7)].getImage();
+			g.drawImage(bg, 0, 0, coach[ran.nextInt(7)].getIconWidth(),
+					coach[ran.nextInt(7)].getIconHeight(), this);
+		}
+	};
+	public static JPanel c_court = new JPanel() {// 籃球場直接從PANEL放入
+		protected void paintComponent(Graphics g) {
+			Image c = court.getImage();
+			g.drawImage(c, 0, 0, court.getIconWidth(),
+					court.getIconHeight(), this);
+		}
+	};
+	public FP() {
+
+		menu.setLayout(new BorderLayout());
+		menu.setDefaultCloseOperation(menu.EXIT_ON_CLOSE);// 關閉就關閉程式
+		menu.setSize(800, 480);
+		menu.setResizable(false);
+
+		for (int i = 0; i < 7; i++) {
+			coach[i] = new ImageIcon("src/s103502548/" + i + ".jpg");
+		}
+		own.setBounds(25,400 , 140, 35);
+		s1.setBounds(175,400, 140, 35);
+		s2.setBounds(325, 400, 140, 35);
+		s3.setBounds(475, 400, 140, 35);
+		exit.setBounds(625, 400, 140, 35);
+		
+		coach_pic.add(own);
+		coach_pic.add(s1);
+		coach_pic.add(s2);
+		coach_pic.add(s3);
+		coach_pic.add(exit);
+		coach_pic.setLayout(null);
+		
+		own.addActionListener(this);
+		s1.addActionListener(this);
+		s2.addActionListener(this);
+		s3.addActionListener(this);
+		exit.addActionListener(this);
+
+		menu.setLocation(400, 100);
+		menu.add(coach_pic);
+		menu.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new FP();
+	}
+
+	public void BacktoMenu() {
+		con.setVisible(false);
+		/*
+		 * s1.setVisible(false); s2.setVisible(false); s3.setVisible(false);
+		 */
+		menu.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == exit) {
+			System.exit(0);
+		}
+		if (e.getSource() == own) {
+			Mydialog name =new Mydialog();
+			Graphics g;
+			
+			System.out.println("ownown");
+			menu.setVisible(false);
+			con.setDefaultCloseOperation(menu.EXIT_ON_CLOSE);// 關閉就關閉程式
+			con.setLocation(400, 100);
+			con.setSize(650, 520);
+//			for (int i = 0; i < 5; i++) {
+//				l_blue[i] = new JLabel(blue);
+//			}
+//			l_blue[0].setBounds(200, 500, blue.getIconWidth(), blue.getIconHeight());
+//			c_court.add(l_blue[0]);
+//			c_court.setLayout(null);
+//			for(int i=0;i<5;i++) {
+//				//l_red[i] = new JLabel(red);
+//				//c_court.add(l_blue[i]);
+//				//c_court.add(l_red[i]);
+//			}
+//			
+			c_option.add(drawred);
+			c_option.add(drawblue);
+			c_option.add(back);
+
+			c_court.addMouseListener(this);
+			c_court.addMouseMotionListener(this);
+			drawblue.addActionListener(this);
+			back.addActionListener(this);
+			drawred.addActionListener(this);
+
+			con.add(c_option, new BorderLayout().EAST);
+			con.add(c_court);
+			con.setVisible(true);
+		}
+		if (e.getSource() == s1) {
+			System.out.println("111111");
+		}
+		if (e.getSource() == s2) {
+			System.out.println("22222");
+		}
+		if (e.getSource() == s3) {
+			System.out.println("33333");
+		}
+		if (e.getSource() == back) {
+			BacktoMenu();
+		}
+		if (e.getSource() == drawblue) {
+
+		}
+		if (e.getSource() == drawred) {
+
+		}
+	}
+	public void paintblue1(Graphics g) {
+		g.drawImage(blue.getImage(), b1_x, b1_y, blue.getIconWidth(), blue.getIconHeight(), null);
+				}
+	public void mouseDragged(MouseEvent e) {
+		Graphics g = null;
+		System.out.println("sad1asd16551616");
+		System.out.println(e.getX()+"\nassadasd");
+
+		System.out.println(e.getY());
+		int orix=e.getX();
+		int oriy=e.getY();
+		g.drawLine(orix, oriy, e.getX(), e.getY());
+	}
+//	public static void mouseDragged(MouseEvent e) {
+//		x=e.getX();
+//		y=e.getY();
+//		if(e.getSource()==l_red[0]) {
+//			con.repaint();
+//			c_court.setLayout(null);
+//			l_red[0].setLocation(x, y);
+//		}
+//		if(e.getSource()==l_red[1]) {
+//			con.repaint();
+//			c_court.setLayout(null);
+//			l_red[1].setLocation(x, y);
+//		}
+//		if(e.getSource()==l_red[2]) {
+//			con.repaint();
+//			c_court.setLayout(null);
+//			l_red[2].setLocation(x, y);
+//		}
+//		if(e.getSource()==l_red[3]) {
+//			con.repaint();
+//			c_court.setLayout(null);
+//			l_red[3].setLocation(x, y);
+//		}
+//		if(e.getSource()==l_red[4]) {
+//			con.repaint();
+//			c_court.setLayout(null);
+//			l_red[4].setLocation(x, y);
+//		}
+//	}
+	public static class Mydialog extends JDialog{
+		private JButton sure = new JButton("Ready & Launch");
+		
+	}
+}

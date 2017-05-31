@@ -1,0 +1,14 @@
+package s103502548;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class choices3Test {
+
+	/*@Test
+	public void testChoices3() {
+		fail("Not yet implemented");
+	}
+*/
+}

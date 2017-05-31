@@ -1,0 +1,134 @@
+package ce1002.fp.s103502006;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class main2Test {
+
+	@Test
+	public void testStartStage() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCheckko() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShowblock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSortblocksequence() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetblocksequence() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSaveshiftblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetshiftblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShowshiftblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetnextblockview() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetshadow() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testMove() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testClearmovingblock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFirmblock() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLinesentcauculate() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testResetcombo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLinesentcombotextset() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testComboplus() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testReset() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testClearline() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddbomb() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testBackground() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLinesentcount() {
+		main2 mtest2 = new main2(); 
+		mtest2.linesent=0;
+		mtest2.clearlinecount=2;
+		mtest2.combo=0;
+		mtest2.linesentcauculate();
+		assertEquals(1,mtest2.linesent);
+	}
+
+	@Test
+	public void testCheckbomb() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testMain() {
+		fail("Not yet implemented");
+	}
+
+}

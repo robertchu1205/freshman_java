@@ -1,0 +1,97 @@
+package ce1002.fp.s103502006;
+
+public class checkiftouch {
+	Main m = new Main();
+
+	boolean down(int[][] map) {
+		for (int j = 0; j <= 19; j++) {
+			for (int i = 2; i <= 11; i++) {
+				if (map[i][j] == 2 ) {
+					if (map[i][j + 1] == 1||map[i][j + 1] == 3)
+						return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	boolean left(int[][] map) {
+		for (int j = 0; j <= 19; j++) {
+			for (int i = 2; i <= 11; i++) {
+				if (map[i][j] == 2) {
+					if (map[i - 1][j] == 1)
+						return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	boolean right(int[][] map) {
+		for (int j = 0; j <= 19; j++) {
+			for (int i = 2; i <= 11; i++) {
+				if (map[i][j] == 2) {
+					if (map[i + 1][j] == 1)
+						return false;
+				}
+			}
+		}
+		return true;
+	}
+
+//	void clockwiserotate() {
+//		int controlblockjudge = 0;
+//		int[][] blockjudge = new int[4][4];
+//		int[][] temp = new int[16][25];
+//		for (int j = 0; j <= 24; j++)
+//			for (int i = 0; i <= 16; i++)
+//				temp[i][j] = m.map[i][j];
+//		for (int i = 0; i <= 3; i++)
+//			for (int j = 0; j <= 3; j++) {
+//				try {
+//					if (temp[1 + i + m.blockx][j + m.blocky] == 1) {
+//					} else
+//						temp[1 + i + m.blockx][j + m.blocky] = m.allblocks[m.sequence[m.blocksequencecounter]][(m.rotate + 1) % 4][j][i];
+//				} catch (Exception e) {
+//
+//				}
+//			}
+//		while (true) {
+//			for (int j = 0; j <= 24; j++)
+//				for (int i = 0; i <= 16; i++) {
+//					if (temp[i][j] == 2) {
+//						if (m.map[i][j] == 1) {
+//							for (int b = 0; b <= 19; b++) {
+//								for (int a = 2; a <= 11; a++) {
+//									if (temp[a][b] == 2) {
+//										if (temp[i][j] <= temp[a][b]) {
+//											controlblockjudge++;
+//										}
+//										if (temp[i][j] >= temp[a][b]) {
+//											controlblockjudge--;
+//										}
+//									}
+//								}
+//
+//							}
+//						}
+//
+//					}
+//				}
+//			if(controlblockjudge>0)
+//			{
+//				if (right(m.map) == true) {
+//					m.blockx++;
+//				}
+//			}
+//			if(controlblockjudge<0)
+//			{
+//				if (left(m.map) == true) {
+//					m.blockx--;
+//					m.showblock(m.blockx, m.blocky, m.rotate);
+//					m.setshadow(m.blockx, m.rotate);
+//				}
+//			}
+//		}
+//	}
+}

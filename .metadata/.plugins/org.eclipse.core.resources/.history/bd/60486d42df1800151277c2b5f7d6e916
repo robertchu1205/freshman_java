@@ -1,0 +1,162 @@
+package s103502548;
+
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+
+public class drawpen extends JFrame {
+	JLabel stateText = new JLabel("游標位置 : 畫布區外");
+	JPanel toolPanel = new JPanel();
+	Color[][] board = new Color[700][750];
+	Color using = Color.black;
+	MsgListener listener = new MsgListener();
+
+	public drawpen() {
+		this.setTitle("小畫家");
+		this.setSize(700, 760);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new BorderLayout());
+		this.setResizable(false);
+
+		stateText.setFont(new Font("", Font.PLAIN, 16));
+		toolPanel.setLayout(new GridLayout(11, 1));
+		add(stateText, BorderLayout.SOUTH);
+		add(toolPanel, BorderLayout.WEST);
+
+		JLabel drawTool = new JLabel("[繪圖工具]");
+		JLabel brushSize = new JLabel("[筆刷大小]");
+		String[] items = { "筆刷", "直線", "橢圓形", "矩形", "圓角矩形" };
+		JComboBox toolBox = new JComboBox(items);
+		toolBox.addItemListener(new BoxListener());
+		toolPanel.add(drawTool);
+		toolPanel.add(toolBox);
+		toolPanel.add(brushSize);
+
+		JRadioButton smallSize = new JRadioButton("小");
+		JRadioButton mediumSize = new JRadioButton("中");
+		JRadioButton largerSize = new JRadioButton("大");
+		ButtonGroup sizeGroup = new ButtonGroup();
+		smallSize.addActionListener(listener);
+		mediumSize.addActionListener(listener);
+		largerSize.addActionListener(listener);
+		smallSize.setSelected(true);
+		toolPanel.add(smallSize);
+		toolPanel.add(mediumSize);
+		toolPanel.add(largerSize);
+		sizeGroup.add(smallSize);
+		sizeGroup.add(mediumSize);
+		sizeGroup.add(largerSize);
+
+		JCheckBox fullBox = new JCheckBox("填滿");
+		fullBox.addActionListener(listener);
+		JButton foreground = new JButton("前景色");
+		foreground.setBackground(Color.white);
+		JButton background = new JButton("背景色");
+		background.setBackground(Color.black);
+		JButton clearScr = new JButton("清除畫面");
+		clearScr.addActionListener(listener);
+		clearScr.setActionCommand("clear");
+		toolPanel.add(fullBox);
+		toolPanel.add(foreground);
+		toolPanel.add(background);
+		toolPanel.add(clearScr);
+		addMouseMotionListener(new MouseMotion());
+		Ing = 0;
+		Init = 0;
+		penSize = 3;
+	}
+
+	int mox, moy, nex, ney;
+	int Ing, Init, penSize;
+
+	public void paint(Graphics g) {
+		int x, y;
+		stateText.setText("游標位置 ： (" + (mox - 100) + "," + (moy - 30)
+				+ ") (拖曳)");
+		if (Init == 0) {
+			stateText.paint(stateText.getGraphics());
+			toolPanel.paint(toolPanel.getGraphics());
+			/*for (x = 110; x < 700; x++) {
+				for (y = 0; y < 730; y++) {
+					board[x][y] = Color.white;
+				}
+				g.setColor(Color.white);
+				g.drawLine(x, 0, x, 730);
+			}*/
+			Init = 1;
+		} else {
+			g.setColor(board[mox][moy]);
+			g.drawLine(mox, moy, nex, ney);
+			g.drawLine(mox + 1, moy + 1, nex + 1, ney + 1);
+			g.drawLine(mox + 1, moy, nex + 1, ney);
+			mox = nex;
+			moy = ney;
+		}
+	}
+
+	class MsgListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "clear") {
+				Init = 0;
+				repaint();
+				return;
+			}
+			JOptionPane.showMessageDialog(null,
+					"你點選了  :  " + e.getActionCommand(), "訊息",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	class BoxListener implements ItemListener {
+		public void itemStateChanged(ItemEvent e) {
+			String s = (String) e.getItem();
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				JOptionPane.showMessageDialog(null, "你點選了  :  " + s, "訊息",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
+
+	class MouseMotion extends MouseMotionAdapter {
+		public void mouseDragged(MouseEvent e) {
+			nex = e.getX();
+			ney = e.getY();
+			if (nex > 110 && ney < 730 && nex < 700) {
+				if (mox <= 110 || moy >= 730 || mox >= 700) {
+					mox = nex;
+					moy = ney;
+				}
+				board[nex][ney] = using;
+				repaint();
+			} else {
+				stateText.setText("游標位置  : 畫布區外");
+			}
+		}
+
+		public void mouseMoved(MouseEvent e) {
+			mox = e.getX();
+			moy = e.getY();
+			if (mox > 110 && mox < 730 && mox < 700) {
+				stateText.setText("游標位置 ： (" + (mox - 100) + "," + (moy - 30)
+						+ ") (停留)");
+			} else {
+				stateText.setText("游標位置  : 畫布區外");
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		drawpen gui = new drawpen();
+		gui.setVisible(true);
+	}
+}
